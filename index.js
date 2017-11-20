@@ -189,10 +189,11 @@ LRUCache.prototype.values = function () {
   }, this)
 }
 
-LRUCache.prototype.reset = function () {
+LRUCache.prototype.reset = function (enableLogging = true) {
   if (this[DISPOSE] &&
       this[LRU_LIST] &&
-      this[LRU_LIST].length) {
+      this[LRU_LIST].length &&
+      enableLogging) {
     this[LRU_LIST].forEach(function (hit) {
       this[DISPOSE](hit.key, hit.value)
     }, this)
